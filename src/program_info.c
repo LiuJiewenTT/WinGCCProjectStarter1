@@ -1,4 +1,4 @@
-#include "program_info.hpp"
+#include "program_info.h"
 #include <stdio.h>
 
 #ifdef __GNUC__

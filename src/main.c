@@ -1,6 +1,6 @@
-#include "program_info.hpp"
+#include "program_info.h"
 #include <stdio.h>
-#include <locale>
+#include <locale.h>
 
 #ifdef _WIN32 
 #include <windows.h> 

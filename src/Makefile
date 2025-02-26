@@ -16,7 +16,7 @@ DEST_DIR = build/dest/
 CFLAGS = -fdiagnostics-color=always -I"./${SRC_DIR}" -I"./${INC_DIR}"
 
 # 源文件和目标文件
-SRC = $(SRC_DIR)main.cpp
+SRC = $(SRC_DIR)main.c
 OBJ = \
 $(BUILD_DIR)main.o\
 $(BUILD_DIR)version.o\
@@ -40,7 +40,7 @@ $(TARGET): $(OBJ)
 # build/%.o: src/%.c
 # 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BUILD_DIR)program_info.o: $(SRC_DIR)program_info.cpp $(SRC_DIR)version.rc flag_every_time
+$(BUILD_DIR)program_info.o: $(SRC_DIR)program_info.c $(SRC_DIR)version.rc flag_every_time
 	@ echo Compiling $@
 	$(CC) $(CFLAGS) -c $< -o $@
 	
@@ -48,12 +48,12 @@ $(BUILD_DIR)version.o: $(SRC_DIR)version.rc
 	@ echo Compiling $@
 	$(WINDRES) $< -o $@
 
-$(BUILD_DIR)resource.res: $(SRC_DIR)resource.rc $(INC_DIR)resource.hpp
+$(BUILD_DIR)resource.res: $(SRC_DIR)resource.rc $(INC_DIR)resource.h
 	@ echo Compiling $@
 	$(WINDRES) -I"./${SRC_DIR}" -I"./${INC_DIR}" -i $< -O coff -o $@
 
-$(BUILD_DIR)main.o: $(SRC_DIR)main.cpp \
-	$(INC_DIR)program_info.hpp $(SRC_DIR)version.rc $(INC_DIR)resource.hpp
+$(BUILD_DIR)main.o: $(SRC_DIR)main.c \
+	$(INC_DIR)program_info.h $(SRC_DIR)version.rc $(INC_DIR)resource.h
 	@ echo Compiling $@
 	$(CC) $(CFLAGS) -c $< -o $@
 
